@@ -53,39 +53,42 @@ var soma = function (total, item, indice, array) {
 
 //testar se o numero passado  menos a soma dos valores do vetor é negativo    
 //caso seja negativo o novo vetor será de apenas duas posiçoes
-if ((nTotal - somaNumbers) < 0 && (vetorNumbers[0] % 2) != 0 && (vetorNumbers[1] % 2) != 0 && (vetorNumbers[2] % 2) != 0) {
+if (((nTotal - somaNumbers) < 0) || (vetorNumbers[2] >= nTotal / 2)) {
     console.log("Entrou aqui na condição de vetor de 2 eleentos")
 
     var novoArray = new Array(2).fill(vetorNumbers[2])
     var somaVetor = novoArray.reduce(soma);
 
-    while (novoArray[0] != vetorNumbers[0] && novoArray[1] != vetorNumbers[0]) {
+    if (somaVetor == nTotal) {
+        listVector.moveNumber(novoArray)
+    } else {
+        while (novoArray[0] != vetorNumbers[0] && novoArray[1] != vetorNumbers[0]) {
 
-        for (i = 2; i >= 0; i--) {
-            novoArray[1] = vetorNumbers[i]
-            somaVetor = novoArray.reduce(soma)
+            for (i = 2; i >= 0; i--) {
+                novoArray[1] = vetorNumbers[i]
+                somaVetor = novoArray.reduce(soma)
+                if (somaVetor == nTotal) {
+                    listVector.moveNumber(novoArray)
+                }
+            }
+
+            for (i = 1; i >= 0; i--) {
+
+                novoArray = new Array(2).fill(vetorNumbers[1])
+                novoArray[1] = vetorNumbers[i]
+                somaVetor = novoArray.reduce(soma)
+
+                if (somaVetor == nTotal) {
+                    listVector.moveNumber(novoArray)
+                }
+            }
+
+            novoArray = new Array(2).fill(vetorNumbers[0])
             if (somaVetor == nTotal) {
                 listVector.moveNumber(novoArray)
             }
+
         }
-
-        for (i = 1; i >= 0; i--) {
-
-            novoArray = new Array(2).fill(vetorNumbers[1])
-            novoArray[1] = vetorNumbers[i]
-            somaVetor = novoArray.reduce(soma)
-
-            if (somaVetor == nTotal) {
-                listVector.moveNumber(novoArray)
-            }
-            // console.log(novoArray)
-        }
-
-        novoArray = new Array(2).fill(vetorNumbers[0])
-        if (somaVetor == nTotal) {
-            listVector.moveNumber(novoArray)
-        }
-
     }
     console.log(listVector.vector)
 }
@@ -104,7 +107,6 @@ else if ((nTotal - somaNumbers) < (nTotal / 2)) {
         console.log(`entrou no ultimo if`)
         listVector.moveNumber(novoArray)
     }
-    //console.log(`este é o valor do novoArray ${novoArray}`)
 
     novoArray = new Array(3).fill(vetorNumbers[2])
 
@@ -134,73 +136,43 @@ else if ((nTotal - somaNumbers) < (nTotal / 2)) {
 }
 
 //entra nesse if somente se os novos arrays tiverem mais de três posições.
-else if ((nTotal - somaNumbers) >= 0) {
-    novoArray = new Array(4).fill(vetorNumbers[2])
-
-    somaVetor = novoArray.reduce(function (somaVetor, i) {
-        return somaVetor + i;
+else{
+    const novoArray = new Array(4).fill(vetorNumbers[2])
+    somaVetor = novoArray.reduce(function (acumulador, valorAtual, index, array) {
+        return acumulador + valorAtual;
     });
-
-    // console.log(`Começo / este é o valor do somaVetor e nTotal ${somaVetor} / ${nTotal}`)
 
     if (somaVetor == nTotal) {
         console.log(`entrou no if de igualdade`)
         listVector.moveNumber(novoArray)
         console.log(listVector.vector)
-        //console.log(`Começo / este é o valor do somaVetor e nTotal ${somaVetor} / ${nTotal}`)
-
     } else {
-
         var numPlus = 4
-        //var numTeste = 0
-
         while (nTotal > somaVetor) {
-            // console.log(`Entrou no while`)
-            novoArray = new Array(numPlus++).fill(vetorNumbers[2])
-            //console.log(`este é o numPlus${numPlus}`)
+            const novoArray = new Array(numPlus++).fill(vetorNumbers[2])
             novoArray.push(vetorNumbers[2]); // inserir o valor de vetorNumber na posição de indice 2 na ultima posição do novoArray
-            //console.log(`${numTeste++}`)
-
-            somaVetor = novoArray.reduce(function (somaVetor, i) {
-                return somaVetor + i;
-            })
-
+            somaVetor = novoArray.reduce(function (acumulador, valorAtual, index, array) {
+                return acumulador + valorAtual;
+            });
             if (somaVetor == nTotal) {
-                //console.log(`entrou no if de igualdade`)
                 listVector.moveNumber(novoArray)
                 console.log(listVector.vector)
             }
-
         }
-
-        //console.log(`Saiu do while`)
-        //console.log(`este é o valor do somaVetor e nTotal ${somaVetor} / ${nTotal}`)
-        //console.log(novoArray)
-
         while (novoArray[0] != vetorNumbers[1]) {
             novoArray.push(vetorNumbers[1]); // ascresenta outro valo ao final do array ..... vetorNumbers precisa rodar array[array.length - 1]
             novoArray.shift(); // tira a primeira posição do array
-            //console.log(novoArray)
-            //console.log(`Começo / este é o valor do somaVetor e nTotal ${somaVetor} / ${nTotal}`)
-
         }
-
-        //console.log(`este é o valor do somaVetor e nTotal ${somaVetor} / ${nTotal}`)
-        //console.log(novoArray)
-        //console.log(novoArray)
-
         while (novoArray[0] != vetorNumbers[0]) {
             novoArray.push(vetorNumbers[0]); // ascresenta outro valo ao final do array ..... vetorNumbers precisa rodar array[array.length - 1]
             novoArray.shift(); // tira a primeira posição do array
-            //console.log(novoArray)
-            // console.log(`Começo / este é o valor do somaVetor e nTotal ${somaVetor} / ${nTotal}`)
         }
-        //console.log(`este é o valor do somaVetor e nTotal ${somaVetor} / ${nTotal}`)
-        //console.log(novoArray)
         console.log(listVector.vector)
-
     }
 }
+
+
+
 
 
 
