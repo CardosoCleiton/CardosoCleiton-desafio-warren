@@ -53,7 +53,7 @@ var soma = function (total, item, indice, array) {
 
 //testar se o numero passado  menos a soma dos valores do vetor é negativo    
 //caso seja negativo o novo vetor será de apenas duas posiçoes
-if ((nTotal - somaNumbers) < 0 && (vetorNumbers[0] % 2) != 0) {
+if ((nTotal - somaNumbers) < 0 && (vetorNumbers[0] % 2) != 0 && (vetorNumbers[1] % 2) != 0 && (vetorNumbers[2] % 2) != 0) {
     console.log("Entrou aqui na condição de vetor de 2 eleentos")
 
     var novoArray = new Array(2).fill(vetorNumbers[2])
@@ -92,7 +92,7 @@ if ((nTotal - somaNumbers) < 0 && (vetorNumbers[0] % 2) != 0) {
 
 //testar se o numero passado  menos a soma dos valores do vetor é menor do que a metade metade do numero passado e se é maior do que zero
 //caso esse teste seja true o vetor terá no maximo três posições
-else if ((nTotal - somaNumbers) < (nTotal / 2) && (vetorNumbers[0] % 2) != 0 && (vetorNumbers[1] % 2) != 0 && (vetorNumbers[2] % 2) != 0) {
+else if ((nTotal - somaNumbers) < (nTotal / 2)) {
     console.log("Pulou o if e entrou no else if aqui o maximo de elementos é 3")
     var x = 2
     var novoArray = vetorNumbers
@@ -201,5 +201,6 @@ else if ((nTotal - somaNumbers) >= 0) {
 
     }
 }
+
 
 
