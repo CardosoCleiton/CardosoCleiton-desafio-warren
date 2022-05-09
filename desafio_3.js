@@ -1,5 +1,4 @@
 
-
 var nTotal = parseFloat(prompt("Digite o numero que você quer somar"))
 var vetorNumbers = []
 var somaNumbers = 0
@@ -15,9 +14,9 @@ for (var i = 0; i < 3; i++) {
 
     vetorNumbers[i] = parseFloat(prompt(`Digite o ${(i + 1)}ºnumero do vetor!`))
 
-    while (vetorNumbers[i] <= 0 || vetorNumbers[i] == nTotal) {
+    while (vetorNumbers[i] <= 0 || vetorNumbers[i] == nTotal || vetorNumbers[i] > nTotal) {
 
-        vetorNumbers[i] = parseFloat(prompt(`Digite o ${(i + 1)}º numero do vetor! Lembre nao pode ser 0 e não pode ser igual ao numero ${(nTotal)}, que você digitou`))
+        vetorNumbers[i] = parseFloat(prompt(`Digite o ${(i + 1)}º numero do vetor! Lembre nao pode ser 0 e não pode ser igual ou maior que o  numero ${(nTotal)}, que você digitou`))
     }
 }
 
@@ -170,6 +169,9 @@ else{
         console.log(listVector.vector)
     }
 }
+
+
+
 
 
 
