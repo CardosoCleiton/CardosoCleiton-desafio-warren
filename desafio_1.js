@@ -36,9 +36,9 @@ let numValidosN = numValidosReverso.map(i => Number(i));
 
 for (var i = 0; i <= numValidosN.length - 1; i++) {
     if (((numValidosN[i] + numValidosR[i]) % 2) != 0) {
-        var numeroSoma =+ i
-       // var somaVetores = numValidosN[i]+  numValidosR[i]
-        //console.log(`${numValidosN[i]} + ${numValidosR[i]} = ${somaVetores}`)
+        var numeroSoma = + i
+        var somaVetores = numValidosN[i]+  numValidosR[i]
+        console.log(`Numero valido ${numValidosN[i]} + seu inverso ${numValidosR[i]} = ${somaVetores}`)
         console.log(`${numValidosN[i]}`)
     }
 }
