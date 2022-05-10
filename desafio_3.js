@@ -1,5 +1,4 @@
 
-
 var nTotal = parseFloat(prompt("Digite o numero que você quer somar"))
 var vetorNumbers = []
 var somaNumbers = 0
@@ -45,8 +44,9 @@ var soma = function (total, item, indice, array) {
         return total;
     }
 }
-//testar se o numero passado  menos a soma dos valores do vetor é negativo    
-//caso seja negativo o novo vetor será de apenas duas posiçoes
+
+
+//caso de apenas duas posiçoes
 if (((nTotal - somaNumbers) < 0) || (vetorNumbers[2] >= nTotal / 2)) {
     console.log("Entrou aqui na condição de vetor de 2 elementos")
 
@@ -88,8 +88,7 @@ if (((nTotal - somaNumbers) < 0) || (vetorNumbers[2] >= nTotal / 2)) {
     }
 
 }
-//testar se o numero passado  menos a soma dos valores do vetor é menor do que a metade metade do numero passado e se é maior do que zero
-//caso esse teste seja true o vetor terá no maximo três posições
+//caso de apenas tres posiçoes
 else if (somaNumbers >= nTotal && vetorNumbers[2] < nTotal / 2) {
     console.log("entrou no if de no maximo 3 elementos")
     var x = 2
@@ -130,6 +129,7 @@ else if (somaNumbers >= nTotal && vetorNumbers[2] < nTotal / 2) {
         console.log('Não foram encontrados vetores para essa situação, porque a soma dos numeros passado não dá um valor exato')
     }
 }
+
 //entra nesse if somente se os novos arrays tiverem mais de três posições.
 else if (somaNumbers > 0) {
     console.log("entrou no if de mais de 4 elementos")
@@ -147,7 +147,7 @@ else if (somaNumbers > 0) {
 
         // console.log("entrou no if de mais de 4 elementos")
         // const novoArray = new Array(4).fill(vetorNumbers[2])
-        var somaVetor = novoArray.reduce(function (acumulador, valorAtual, index, array) {
+        somaVetor = novoArray.reduce(function (acumulador, valorAtual, index, array) {
             return acumulador + valorAtual;
         });
 
@@ -170,11 +170,25 @@ else if (somaNumbers > 0) {
             }
         }
         console.log("saiu do while ")
+
+
         while (novoArray[0] != vetorNumbers[1]) {
+           // novoArray.shift(); // tira a primeira posição do array
             novoArray.push(vetorNumbers[1]); // ascresenta outro valo ao final do array ..... vetorNumbers precisa rodar array[array.length - 1]
             novoArray.shift(); // tira a primeira posição do array
             console.log("entrou do while 2 ")
             console.log(novoArray, somaVetor, nTotal)
+
+            somaVetor = novoArray.reduce(function (acumulador, valorAtual, index, array) {
+                return acumulador + valorAtual;
+            });
+
+
+            if (somaVetor == nTotal) {
+                listVector.moveNumber(novoArray)
+                //console.log(`Abaixo os vetores para essa situação`)
+                //console.log(listVector.vector)
+            }
         }
         console.log("saiu do while 2 ")
         while (novoArray[0] != vetorNumbers[0]) {
@@ -182,23 +196,28 @@ else if (somaNumbers > 0) {
             novoArray.shift(); // tira a primeira posição do 
             console.log("entrou do while 3 ")
             console.log(novoArray, somaVetor, nTotal)
+
+            somaVetor = novoArray.reduce(function (acumulador, valorAtual, index, array) {
+                return acumulador + valorAtual;
+            });
+
+
+            if (somaVetor == nTotal) {
+                listVector.moveNumber(novoArray)
+                //console.log(`Abaixo os vetores para essa situação`)
+                //console.log(listVector.vector)
+            }
+
         }
+
         console.log("saiu do while 3 ")
 
-        //console.log(listVector.vector)
+        console.log(listVector.vector)
     } else {
         console.log('Não foram encontrados vetores para essa situação, porque a soma dos numeros passado não dá um valor exato')
     }
 } else {
     console.log('Não foram encontrados vetores para essa situação, porque a soma dos numeros passado não dá um valor exato')
 }
-
-
-
-
-
-
-
-
 
 
